@@ -1,12 +1,14 @@
-// import comp from './component/my';
-// let Main = comp[0]
-// let My = comp[1]
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Product from './component/Product';
+import { RouterProvider } from "react-router-dom";
+import Route from './component/Route';
+// import comp from './component/my';
+// let Main = comp[0]
+// let My = comp[1]
+// import App from './App';
+// import Product from './component/Product';
 // import Counter from './component/Counter';
 // import Profile from  './component/Profile'
 // import Greet from './component/Greet';
@@ -16,6 +18,7 @@ import Product from './component/Product';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <RouterProvider router={Route()}/>
     {/* <Main id='1' name="Rohit" />
      <My name="Rajesh" /> 
     <Greet />
@@ -24,9 +27,9 @@ root.render(
       <Profile name={name} age={age} img={img} />
       <Profile name={name} age={age} img={img} />
     </div>
-    <Counter /> */}
+    <Counter /> 
     <Product />
-    <App />
+    <App /> */}
   </React.StrictMode>
 );
 
