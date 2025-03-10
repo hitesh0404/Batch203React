@@ -16,6 +16,10 @@ function Route(props) {
             path:'/counter',
             element:(<><Navbar/><Counter/></>)
         }
+        ,{
+            path:'/*',
+            element:(<><h1>opps 404<br/> There is no way</h1></>)
+        }
     ])
 }
 export default Route;

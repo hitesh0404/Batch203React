@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from "react-router-dom";
 function Navbar(props) {
     return (
       <>
@@ -19,19 +19,19 @@ function Navbar(props) {
           <div className="collapse navbar-collapse" id="collapsibleNavId">
             <ul className="navbar-nav me-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" href="/" aria-current="page">
+                <NavLink className="nav-link active" to="/" aria-current="page">
                   Home 
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/products" aria-current="page">
+                <NavLink className="nav-link active" to="/products" aria-current="page">
                   All Products
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="/counter" aria-current="page">
+                <NavLink className="nav-link active" to="/counter" aria-current="page">
                   Counter App
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/">

@@ -1,51 +1,68 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
+import useGetData from "./useGetData";
+import Filters from "./Filters";
 
 function Product(props) {
-    async function getProduct(products){
-        await fetch("https://fakestoreapi.com/products")
-                .then((responce)=>responce.json())
-                .then((data)=>{
-                    // console.log(Object.values(data));
-                    setProducts(data)
-                })
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filter, setFilter] = useState({ category: "", price: "" });
+
+  // Fetch products and set it to state
+  const { data, error } = useGetData({
+    url: "https://dummyjson.com/products",
+  });
+
+  useEffect(() => {
+    if (data && data.products) {
+      // Fix: Extract products from response
+      let filtered = [...data.products]; // Corrected products extraction
+
+      // Apply category filter
+      if (filter.category) {
+        filtered = filtered.filter(
+          (product) => product.category === filter.category
+        );
+      }
+
+      // Apply price filter (assuming "low" means price < 50 and "high" means price >= 50)
+      if (filter.price === "low") {
+        filtered = filtered.filter((product) => product.price < 50);
+      } else if (filter.price === "high") {
+        filtered = filtered.filter((product) => product.price >= 50);
+      }
+
+      setFilteredProducts(filtered);
     }
-    const [products,setProducts] = useState([])
-    useEffect(()=>{
-        getProduct()
-    },[])
-    return (
-        <>
-            <div
-                class="row justify-content-center align-items-center g-2"
-            >
-                {products.map((product,index)=>{
-                    return (
-                      <>
-                        <div class="card col-4 bg-dark text-primary">
-                          <img
-                            class="card-img-top"
-                            src={product.image}
-                            alt="Title"
-                            height={300}
-                            width=""
-                          />
-                          <div class="card-body">
-                            <h4 class="card-title">
-                              {index +1 }. {product.title}
-                            </h4>
-                            <p class="card-text">
-                              {product.price}   
-                              .    {product.category}
-                            </p>
-                          </div>
-                        </div>
-                      </>
-                    );
-                })}
-            </div>
-            
-        </>
-    );
+  }, [filter, data]);
+
+  return (
+    <>
+      <Filters setFilter={setFilter} />
+      {error && <p>Error: {error}</p>}
+      <div className="row justify-content-center align-items-center g-2">
+        {filteredProducts &&
+          filteredProducts.map((product, index) => {
+            return (
+              <div key={product.id} className="card col-4 bg-dark text-primary">
+                <img
+                  className="card-img-top"
+                  src={product.thumbnail}
+                  alt={product.title}
+                  height={300}
+                />
+                <div className="card-body">
+                  <h4 className="card-title">
+                    {index + 1}. {product.title}
+                  </h4>
+                  <p className="card-text">
+                    ${product.price}. {product.category}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    </>
+  );
 }
 
 export default Product;
