@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useGetData from "./useGetData";
 import Filters from "./Filters";
+import { NavLink } from "react-router-dom";
 
 function Product(props) {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -17,17 +18,18 @@ function Product(props) {
       let filtered = [...data.products]; // Corrected products extraction
 
       // Apply category filter
-      if (filter.category) {
+      if (filter.category !== '') {
         filtered = filtered.filter(
           (product) => product.category === filter.category
         );
       }
+     
 
       // Apply price filter (assuming "low" means price < 50 and "high" means price >= 50)
       if (filter.price === "low") {
-        filtered = filtered.filter((product) => product.price < 50);
+        filtered = filtered.sort((p1,p2) => p1.price - p2.price);
       } else if (filter.price === "high") {
-        filtered = filtered.filter((product) => product.price >= 50);
+        filtered = filtered.sort((p1, p2) => p2.price - p1.price);
       }
 
       setFilteredProducts(filtered);
@@ -56,6 +58,12 @@ function Product(props) {
                   <p className="card-text">
                     ${product.price}. {product.category}
                   </p>
+                  <NavLink
+                    to={ window.location.href + product.id}
+                    className="btn btn-dark border "
+                  >
+                    Show details
+                  </NavLink>
                 </div>
               </div>
             );

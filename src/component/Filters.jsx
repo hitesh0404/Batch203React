@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import useGetData from "./useGetData";
 
 function Filters({ setFilter }) {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(null);
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
-  const { data } = useGetData({
+  const { data, error } = useGetData({
     url: "https://dummyjson.com/products/categories",
   });
 
@@ -32,7 +32,7 @@ function Filters({ setFilter }) {
         <label>Category: </label>
         <select value={category} onChange={handleCategoryChange}>
           <option value="">All</option>
-          {categories &&
+          { categories &&
             categories.map((category, index) => (
               <option key={index} value={category.slug}>
                 {category.name}
