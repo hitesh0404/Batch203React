@@ -1,10 +1,15 @@
-import React from 'react'
-const greet = ({name})=>{
-    setTimeout(()=>{
-        console.log(Math.random());
-        console.log(name);
-    },2)
-    return "hello "+name;
-}
+import React from "react";
 
-export default React.memo(greet)
+export default React.memo(({ name }) => {
+    console.log(Math.random());
+    console.log(name);
+    return  name;
+});
+
+// export default function ChildComponent({name}) {
+//   return (<div>
+//     {name}
+//     {console.log(Math.random())} 
+//      {console.log(name)}
+// </div>)
+// }
