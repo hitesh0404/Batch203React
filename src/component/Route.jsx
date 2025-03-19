@@ -5,6 +5,8 @@ import App from './../App';
 import Counter from './Counter';
 import Navbar from './Navbar';
 import ProductDetails from './ProductDetails';
+import SearchProduct from './SearchProduct';
+import SearchProductResult from './SearchProductResult';
 function Route(props) {
     return createBrowserRouter([
       {
@@ -41,6 +43,15 @@ function Route(props) {
           <>
             <Navbar />
             <Counter />
+          </>
+        ),
+      },
+      {
+        path: "/search-result/:q",
+        element: (
+          <>
+            <Navbar />
+            <SearchProductResult/>
           </>
         ),
       },

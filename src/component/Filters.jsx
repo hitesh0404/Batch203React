@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useGetData from "./useGetData";
+import SearchProduct from "./SearchProduct";
 
 function Filters({ setFilter }) {
   const [categories, setCategories] = useState(null);
@@ -47,6 +48,9 @@ function Filters({ setFilter }) {
           <option value="low">Low</option>
           <option value="high">High</option>
         </select>
+      </div>
+      <div>
+        <SearchProduct/>
       </div>
     </div>
   );

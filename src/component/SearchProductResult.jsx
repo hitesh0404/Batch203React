@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import useGetData from "./useGetData";
 import Filters from "./Filters";
 import { NavLink } from "react-router-dom";
-
-function Product(props) {
+import { useParams } from "react-router-dom";
+function SearchProductResult(props) {
+  const {q} = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [filter, setFilter] = useState({ category: "", price: "" });
 
   // Fetch products and set it to state
   const { data, error } = useGetData({
-    url: "https://dummyjson.com/products",
+    url: `https://dummyjson.com/products/search?q=${q}`,
   });
 
   useEffect(() => {
@@ -81,4 +82,4 @@ function Product(props) {
   );
 }
 
-export default Product;
+export default SearchProductResult;
