@@ -7,17 +7,45 @@ import Navbar from './Navbar';
 import ProductDetails from './ProductDetails';
 import SearchProduct from './SearchProduct';
 import SearchProductResult from './SearchProductResult';
+import CountWithUseReduce from './CountWithUseReduce';
 function Route(props) {
+  function ChildOne(){
+    return (
+      <>
+        <div class="child-component">
+          <h1>Hello i am Child one</h1>
+        </div>
+      </>
+    );
+  }
+    function ChildTwo() {
+      return (
+        <>
+          <div class="child-component">
+            <h1>Hello i am Child Two</h1>
+          </div>
+        </>
+      );
+    }
     return createBrowserRouter([
       {
         path: "/",
         element: (
           <>
-            {" "}
             <Navbar />
-            <App />{" "}
+            <App />
           </>
         ),
+        children: [
+          {
+            path: "child1",
+            element: <ChildOne />,
+          },
+          {
+            path: "child2",
+            element: <ChildTwo />,
+          },
+        ],
       },
       {
         path: "/products/:id",
@@ -51,7 +79,16 @@ function Route(props) {
         element: (
           <>
             <Navbar />
-            <SearchProductResult/>
+            <SearchProductResult />
+          </>
+        ),
+      },
+      {
+        path: "/newcounter",
+        element: (
+          <>
+            <Navbar />
+            <CountWithUseReduce />
           </>
         ),
       },
