@@ -67,12 +67,16 @@ function Navbar(props) {
                 </a>
               </div>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/myprofile">
+                MyProfile
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
-      
+
       <Outlet />
-    
     </>
   );
 }

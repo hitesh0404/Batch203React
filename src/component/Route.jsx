@@ -8,6 +8,7 @@ import ProductDetails from './ProductDetails';
 import SearchProduct from './SearchProduct';
 import SearchProductResult from './SearchProductResult';
 import CountWithUseReduce from './CountWithUseReduce';
+import MyProfile from './MyProfile';
 function Route(props) {
   function ChildOne(){
     return (
@@ -38,8 +39,8 @@ function Route(props) {
         ),
         children: [
           {
-            path: "child1",
-            element: <ChildOne />,
+            path: "myprofile",
+            element: <MyProfile />,
           },
           {
             path: "child2",
@@ -79,7 +80,7 @@ function Route(props) {
         element: (
           <>
             <Navbar />
-            <SearchProductResult />
+            <SearchProductResult  />
           </>
         ),
       },
