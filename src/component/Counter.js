@@ -22,6 +22,7 @@ function Counter(props) {
           >
             Increment
           </button>
+          <h1 data-testid="countValue">{getCount}</h1>
           <button
             type="button"
             onClick={decrement}

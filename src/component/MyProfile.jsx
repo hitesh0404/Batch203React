@@ -1,4 +1,4 @@
-import React,{useContext} from "react";
+import {useContext} from "react";
 import { NavLink } from "react-router-dom";
 import {UserDataContext} from './Parent'
 
@@ -24,7 +24,7 @@ export default function MyProfile() {
             />
           </svg>
           <div className="card-body">
-            <h4 className="card-title">{userData.firstName}</h4>
+            <h4 className="card-title" data-testid={"userFirstName"}>{userData.firstName}</h4>
             <p className="card-text">{userData.email}</p>
           </div>
           <div class="d-grid gap-2 fs-1 text-bg-success text-center   btn-success ">
